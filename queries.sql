@@ -27,6 +27,8 @@ limit 10;
 
 
 #3 Show all unique product names.
+# Uses DISTINCT to return only unique product names from the table
+# Eliminates duplicate product entries
 select distinct product
 from tbl_sales;
 
