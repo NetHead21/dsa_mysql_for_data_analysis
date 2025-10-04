@@ -18,6 +18,8 @@ where country = 'Canada';
 
 
 #2 Retrieve the top 10 highest sales transactions.
+# Orders all records by the sales column in descending order (highest first)
+# Limits the result to only the top 10 rows
 select *
 from tbl_sales
 order by sales desc
