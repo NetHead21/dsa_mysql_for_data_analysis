@@ -52,3 +52,13 @@ where Month_Number = 1;
 select *
 from tbl_sales
 where profit < 0;
+
+
+-- 6 Total sales per country.
+-- select country, round(sum(sales), 2) as total_sales — Selects the country name and the sum of all sales for that
+-- country, rounded to 2 decimal places from tbl_sales — Data is pulled from the tbl_sales table
+-- group by country — Groups all rows by country, so the sum(sales) is calculated separately for each country
+select country,
+       round(sum(sales), 2) as total_sales
+from tbl_sales
+group by country;
