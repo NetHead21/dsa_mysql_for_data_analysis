@@ -82,3 +82,14 @@ select year,
        round(sum(profit), 2) as total_profit
 from tbl_sales
 group by year;
+
+
+-- 9 Find top 5 countries with the highest sales.
+-- Groups by country and sums total sales for each country
+-- order by sum_of_sales desc — Sorts countries from highest to lowest sales
+-- limit 5 — Returns only the top 5 countries
+select country, round(sum(sales), 2) as sum_of_sales
+from tbl_sales
+group by country
+order by sum_of_sales desc
+limit 5;
