@@ -93,3 +93,12 @@ from tbl_sales
 group by country
 order by sum_of_sales desc
 limit 5;
+
+
+-- 10 Number of transactions per market segment.
+-- Groups data by segment (e.g., Government, Small Business, Enterprise, etc.)
+-- count(*) — Counts the number of rows (transactions) in each segment
+-- Shows transaction volume by market segment
+select segment, count(*) as count_of_transactions
+from tbl_sales
+group by segment;
