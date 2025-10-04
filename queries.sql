@@ -33,7 +33,9 @@ select distinct product
 from tbl_sales;
 
 
-#4 Find sales made in January 2024.
+-- 4 Find sales made in January 2024.
+-- Filters rows where Month_Name is 'January' AND year is '2024'
+-- Both conditions must be true for a row to be included
 select *
 from tbl_sales
 where Month_Name = 'January'
@@ -44,7 +46,9 @@ from tbl_sales
 where Month_Number = 1;
 
 
-#5 Display all transactions where profit is negative.
+-- 5 Display all transactions where profit is negative.
+-- Filters rows where profit column is less than 0
+-- Shows all loss-making transactions
 select *
 from tbl_sales
 where profit < 0;
