@@ -63,6 +63,7 @@ select country,
 from tbl_sales
 group by country;
 
+
 -- 7 Average units sold by product.
 -- Groups data by product and calculates the average units_sold for each product
 -- round(avg(units_sold), 2) — Computes average and rounds to 2 decimal places
@@ -71,3 +72,13 @@ select product,
        round(avg(units_sold), 2) as product_avg_unit_sold
 from tbl_sales
 group by product;
+
+
+-- 8 Total profit per year.
+-- Groups all transactions by year
+-- sum(profit) — Adds up all profit values for each year
+-- Shows yearly profit performance, rounded to 2 decimal places
+select year,
+       round(sum(profit), 2) as total_profit
+from tbl_sales
+group by year;
