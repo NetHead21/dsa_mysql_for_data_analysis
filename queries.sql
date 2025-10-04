@@ -22,3 +22,13 @@ limit 10;
 #3 Show all unique product names.
 select distinct product
 from tbl_sales;
+
+#4 Find sales made in January 2024.
+select *
+from tbl_sales
+where Month_Name = 'January'
+  and year = '2024';
+
+select *
+from tbl_sales
+where Month_Number = 1;
