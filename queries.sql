@@ -102,3 +102,15 @@ limit 5;
 select segment, count(*) as count_of_transactions
 from tbl_sales
 group by segment;
+
+
+-- 11 Products with total sales above 100,000.
+-- Groups by product and sums total sales for each product
+-- having total_sales > 100000 — Filters groups where total sales exceed 100,000
+-- HAVING is used (not WHERE) because it filters aggregated results
+-- order by total_sales desc — Sorts from highest to lowest sales
+select product, round(sum(sales), 2) as total_sales
+from tbl_sales
+group by product
+having total_sales > 100000
+order by total_sales desc;
