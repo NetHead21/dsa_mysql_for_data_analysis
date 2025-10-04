@@ -1,0 +1,8 @@
+How to Download, Install, and Configure MySQL Server and MySQL Workbench (Quick Run-through)
+https://youtu.be/Q-7ZpEcnGuI
+
+How to Download, Install, and Configure MySQL Server and MySQL Workbench (Full Live Demo)
+https://youtu.be/8rNz8tt_0C4
+
+How to Import CSV File to MySQL Server as New Schema (Database)
+https://youtu.be/rIDavUBhFI4
