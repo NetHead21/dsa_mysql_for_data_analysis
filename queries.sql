@@ -114,3 +114,12 @@ from tbl_sales
 group by product
 having total_sales > 100000
 order by total_sales desc;
+
+-- Alternative approach: Wraps the previous query as a subquery
+-- Achieves the same result but demonstrates subquery usage
+select *
+from (select product, round(sum(sales), 2) as total_sales
+      from tbl_sales
+      group by product
+      having total_sales > 100000
+      order by total_sales desc) pts;
