@@ -18,3 +18,7 @@ select *
 from tbl_sales
 order by sales desc
 limit 10;
+
+#3 Show all unique product names.
+select distinct product
+from tbl_sales;
