@@ -12,3 +12,9 @@ from tbl_sales;
 select *
 from tbl_sales
 where country = 'Canada';
+
+#2 Retrieve the top 10 highest sales transactions.
+select *
+from tbl_sales
+order by sales desc
+limit 10;
