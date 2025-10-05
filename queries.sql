@@ -234,3 +234,17 @@ from (select country,
       from tbl_sales) ranked
 where rn <= 5
 order by country, transaction_profit desc;
+
+
+-- 20 Segment with highest average profit per unit sold.
+-- Calculates profit per unit by dividing profit by units_sold
+-- nullif(units_sold, 0) — Prevents division by zero errors
+-- where units_sold > 0 — Filters out transactions with no units sold
+-- Groups by segment and calculates average profit per unit for each segment
+-- limit 1 — Returns only the segment with the highest average profit per unit
+select segment, round(avg(profit / nullif(units_sold, 0)), 2) as avg_profit_per_unit
+from tbl_sales
+where units_sold > 0
+group by segment
+order by avg_profit_per_unit desc
+limit 1;
