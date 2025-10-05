@@ -276,3 +276,20 @@ select year,
 from tbl_sales
 group by year
 order by year;
+
+
+
+-- 23 Top product per segment by profit.
+-- Subquery: Groups by segment and product, calculates total profit for each combination
+-- row_number() over (partition by segment order by sum(profit) desc) — Ranks products within each segment
+-- partition by segment — Creates separate ranking for each segment
+-- Outer query: Filters where rn = 1 to get the most profitable product per segment
+select segment, product, total_profit
+from (select segment,
+             product,
+             round(sum(profit), 2) as total_profit,
+             row_number() over (partition by segment order by sum(profit) desc) as rn
+      from tbl_sales
+      group by segment, product) ranked
+where rn = 1
+order by segment;
