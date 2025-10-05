@@ -220,3 +220,17 @@ from tbl_sales
 where year = 2024
 group by Month_Number
 order by Month_Number;
+
+
+-- 19 Top 5 most profitable transactions per country.
+-- Subquery: Uses row_number() to rank transactions within each country by profit (highest first)
+-- partition by country — Creates separate ranking for each country
+-- Outer query: Filters where rn <= 5 to get the top 5 transactions per country
+-- order by country, transaction_profit desc — Sorts by country, then by profit within each country
+select country, profit as transaction_profit
+from (select country,
+             profit,
+             row_number() over (partition by country order by profit desc) as rn
+      from tbl_sales) ranked
+where rn <= 5
+order by country, transaction_profit desc;
