@@ -195,3 +195,16 @@ from (select year,
       group by year, product) ranked
 where rn = 1
 order by year;
+
+
+-- 17 Country with highest profit margin (Profit/Sales).
+-- Calculates profit margin as (total profit / total sales) * 100 for each country
+-- having sum(sales) > 0 — Ensures we don't divide by zero
+-- order by profit_margin desc — Sorts from highest to lowest margin
+-- limit 1 — Returns only the country with the highest profit margin
+select country, round(sum(profit) / sum(sales) * 100, 2) as profit_margin
+from tbl_sales
+group by country
+having sum(sales) > 0
+order by profit_margin desc
+limit 1;
