@@ -309,3 +309,14 @@ select Month_Number, Month_Name, year, count(*) as transactions_with_high_discou
 from tbl_sales
 where discounts > (0.1 * gross_sales)
 group by Month_Number, Month_Name, year
+order by year, Month_Number;
+
+
+-- 25 Most profitable product-country pair overall.
+-- First query: Orders all transactions by profit (highest first)
+-- limit 1 — Returns the single most profitable transaction
+-- Shows the highest profit in a single transaction
+select country, product, round(profit, 2) as max_profit
+from tbl_sales
+order by profit desc
+limit 1;
