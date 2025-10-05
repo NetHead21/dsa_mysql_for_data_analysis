@@ -123,3 +123,12 @@ from (select product, round(sum(sales), 2) as total_sales
       group by product
       having total_sales > 100000
       order by total_sales desc) pts;
+
+-- 12 Countries where average discount is greater than 500.
+-- Groups by country and calculates average discount for each country
+-- having avg_discount > 500 — Filters countries with average discount above 500
+-- Identifies countries where discounts are highest
+select country, avg(discounts) as avg_discount
+from tbl_sales
+group by country
+having avg_discount > 500;
