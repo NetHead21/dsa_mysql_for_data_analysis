@@ -302,3 +302,10 @@ select distinct Month_Number, Month_Name, year
 from tbl_sales
 where discounts > (0.1 * gross_sales)
 order by year, Month_Number;
+
+-- Alternative approach: Counts how many transactions had high discounts per month
+-- Provides more detail by showing transaction count for each month
+select Month_Number, Month_Name, year, count(*) as transactions_with_high_discount
+from tbl_sales
+where discounts > (0.1 * gross_sales)
+group by Month_Number, Month_Name, year
