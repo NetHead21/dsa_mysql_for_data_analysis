@@ -248,3 +248,16 @@ where units_sold > 0
 group by segment
 order by avg_profit_per_unit desc
 limit 1;
+
+
+-- 21 Countries where total sales exceed 200,000 and average discount is less than 1000.
+-- Groups by country and calculates total sales and average discount for each country
+-- having sum(sales) > 200000 and avg(discounts) < 1000 — Filters countries meeting both conditions
+-- Identifies high-revenue countries with low discount strategies
+select country,
+       round(sum(sales), 2)     as total_sales,
+       round(avg(discounts), 2) as avg_discount
+from tbl_sales
+group by country
+having sum(sales) > 200000
+   and avg(discounts) < 1000;
