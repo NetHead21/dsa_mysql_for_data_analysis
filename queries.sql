@@ -320,3 +320,12 @@ select country, product, round(profit, 2) as max_profit
 from tbl_sales
 order by profit desc
 limit 1;
+
+-- Alternative approach: Groups by country and product, sums total profit
+-- Finds the product-country pair with highest cumulative profit across all transactions
+-- More meaningful for identifying best overall product-country combination
+select country, product, round(sum(profit), 2) as total_profit
+from tbl_sales
+group by country, product
+order by total_profit desc
+limit 1;
