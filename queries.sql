@@ -208,3 +208,15 @@ group by country
 having sum(sales) > 0
 order by profit_margin desc
 limit 1;
+
+
+-- 18 Monthly sales trend for 2024.
+-- Filters data for year 2024 only
+-- Groups by Month_Number and calculates total sales for each month
+-- max(Month_Name) — Gets the month name (using MAX since it's the same for each Month_Number)
+-- order by Month_Number — Sorts chronologically from January (1) to December (12)
+select Month_Number, max(Month_Name) as Month_Name, round(sum(sales), 2) as total_sales
+from tbl_sales
+where year = 2024
+group by Month_Number
+order by Month_Number;
