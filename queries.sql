@@ -261,3 +261,18 @@ from tbl_sales
 group by country
 having sum(sales) > 200000
    and avg(discounts) < 1000;
+
+
+-- 22 Yearly profit growth (compare profits across years).
+-- Groups by year and calculates total profit for each year
+-- lag(sum(profit)) over (order by year) — Gets the previous year's profit
+-- profit_growth — Calculates absolute difference from previous year
+-- growth_percentage — Calculates percentage change from previous year
+-- nullif prevents division by zero for the first year
+select year,
+       round(sum(profit), 2) as total_profit,
+       round(sum(profit) - lag(sum(profit)) over (order by year), 2) as profit_growth,
+       round((sum(profit) - lag(sum(profit)) over (order by year)) / nullif(lag(sum(profit)) over (order by year), 0) * 100, 2) as growth_percentage
+from tbl_sales
+group by year
+order by year;
