@@ -139,3 +139,20 @@ select country, avg(discounts) as avg_discount
 from tbl_sales
 group by country
 having avg(discounts) > 500;
+
+
+
+-- 13 Find the most profitable product in each country.
+-- Subquery: Groups by country and product, calculates total profit for each combination
+-- row_number() over (partition by country order by sum(profit) desc) — Assigns rank 1 to the top product per country
+-- partition by country — Creates separate ranking for each country
+-- Outer query: Filters where rn = 1 to get only the top product per country
+select country, product, max_profit
+from (select country,
+             product,
+             round(sum(profit), 2) as max_profit,
+             row_number() over (partition by country order by sum(profit) desc) as rn
+      from tbl_sales
+      group by country, product) ranked
+where rn = 1
+order by country;
