@@ -168,6 +168,7 @@ group by segment
 order by total_profit desc
 limit 3;
 
+
 -- 15 Products where average sales price > 120.
 -- Groups by product and calculates average sale_price for each product
 -- having avg(sale_price) > 120 — Filters products with average price above 120
@@ -178,3 +179,19 @@ from tbl_sales
 group by product
 having avg(sale_price) > 120
 order by avg_sale_price desc;
+
+
+-- 16 Find the best-selling product in each year.
+-- Subquery: Groups by year and product, sums units_sold for each combination
+-- row_number() over (partition by year order by sum(units_sold) desc) — Ranks products within each year
+-- partition by year — Creates separate ranking for each year
+-- Outer query: Filters where rn = 1 to get the top-selling product per year
+select year, product, total_units_sold
+from (select year,
+             product,
+             sum(units_sold)                                                     as total_units_sold,
+             row_number() over (partition by year order by sum(units_sold) desc) as rn
+      from tbl_sales
+      group by year, product) ranked
+where rn = 1
+order by year;
