@@ -124,6 +124,7 @@ from (select product, round(sum(sales), 2) as total_sales
       having total_sales > 100000
       order by total_sales desc) pts;
 
+
 -- 12 Countries where average discount is greater than 500.
 -- Groups by country and calculates average discount for each country
 -- having avg_discount > 500 — Filters countries with average discount above 500
@@ -139,7 +140,6 @@ select country, avg(discounts) as avg_discount
 from tbl_sales
 group by country
 having avg(discounts) > 500;
-
 
 
 -- 13 Find the most profitable product in each country.
@@ -158,7 +158,6 @@ where rn = 1
 order by country;
 
 
-
 -- 14 Top 3 segments by total profit.
 -- Groups by segment and sums total profit for each segment
 -- order by total_profit desc — Sorts segments from highest to lowest profit
@@ -168,3 +167,14 @@ from tbl_sales
 group by segment
 order by total_profit desc
 limit 3;
+
+-- 15 Products where average sales price > 120.
+-- Groups by product and calculates average sale_price for each product
+-- having avg(sale_price) > 120 — Filters products with average price above 120
+-- Identifies premium-priced products
+-- order by avg_sale_price desc — Sorts from highest to lowest average price
+select product, round(avg(sale_price), 2) as avg_sale_price
+from tbl_sales
+group by product
+having avg(sale_price) > 120
+order by avg_sale_price desc;
