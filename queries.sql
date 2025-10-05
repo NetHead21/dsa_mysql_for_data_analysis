@@ -132,3 +132,10 @@ select country, avg(discounts) as avg_discount
 from tbl_sales
 group by country
 having avg_discount > 500;
+
+-- Alternative approach: Uses the aggregate function directly in HAVING clause
+-- Both approaches produce the same result
+select country, avg(discounts) as avg_discount
+from tbl_sales
+group by country
+having avg(discounts) > 500;
