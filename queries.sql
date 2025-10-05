@@ -156,3 +156,15 @@ from (select country,
       group by country, product) ranked
 where rn = 1
 order by country;
+
+
+
+-- 14 Top 3 segments by total profit.
+-- Groups by segment and sums total profit for each segment
+-- order by total_profit desc — Sorts segments from highest to lowest profit
+-- limit 3 — Returns only the top 3 most profitable segments
+select segment, round(sum(profit), 2) as total_profit
+from tbl_sales
+group by segment
+order by total_profit desc
+limit 3;
