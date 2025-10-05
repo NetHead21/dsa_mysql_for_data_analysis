@@ -278,7 +278,6 @@ group by year
 order by year;
 
 
-
 -- 23 Top product per segment by profit.
 -- Subquery: Groups by segment and product, calculates total profit for each combination
 -- row_number() over (partition by segment order by sum(profit) desc) — Ranks products within each segment
@@ -293,3 +292,13 @@ from (select segment,
       group by segment, product) ranked
 where rn = 1
 order by segment;
+
+
+-- 24 Find months where discounts exceeded 10% of gross sales.
+-- First query: Returns distinct months/years where discount > 10% of gross_sales
+-- where discounts > (0.1 * gross_sales) — Filters transactions with high discount ratio
+-- distinct — Eliminates duplicate month-year combinations
+select distinct Month_Number, Month_Name, year
+from tbl_sales
+where discounts > (0.1 * gross_sales)
+order by year, Month_Number;
